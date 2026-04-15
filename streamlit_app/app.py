@@ -1,9 +1,9 @@
 import streamlit as st
 
-home = st.Page("streamlit_app/pages/home.py", title="Home", icon="🏠")
-maps = st.Page("streamlit_app/pages/map_viewer.py", title="Maps", icon="🗺️")
-refresh = st.Page("streamlit_app/pages/refresh_data.py", title="Refresh Data", icon="🔄")
-methodology = st.Page("streamlit_app/pages/methodology.py", title="Methodology", icon="📘")
+home = st.Page("pages/home.py", title="Home", icon="🏠", default=True)
+maps = st.Page("pages/map_viewer.py", title="Maps", icon="🗺️")
+refresh = st.Page("pages/refresh_data.py", title="Refresh Data", icon="🔄")
+methodology = st.Page("pages/methodology.py", title="Methodology", icon="📘")
 
 st.set_page_config(
     page_title="Uncornered Community Safety Dashboard",

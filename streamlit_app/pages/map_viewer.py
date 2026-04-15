@@ -20,4 +20,6 @@ else:
 st.write("Selected controls")
 st.json(controls)
 
+st.write("Looking for file:", html_path)
+
 render_html_map(html_path, height=780)
