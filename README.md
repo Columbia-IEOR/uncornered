@@ -30,8 +30,6 @@ ArcGIS automation for updated map layers
 
 Catalyst and network data integration
 
-Graph-based visualization with Neo4j
-
 Automated weekly data refresh pipeline
 
 User-friendly dashboard for non-technical staff and Core Influencers
