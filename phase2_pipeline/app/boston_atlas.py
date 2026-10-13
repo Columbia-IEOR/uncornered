@@ -106,11 +106,11 @@ div[class*="st-key-card_"] {
   margin-bottom: 1rem;
   box-shadow: 0 1px 2px rgba(28,25,23,0.04);
 }
-.uc-brandline { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
-.uc-logo { height: 68px; width: auto; display: block; }
+.uc-brandline { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.uc-logo { height: 44px; width: auto; display: block; }
 .uc-title {
-  font-size: 1.45rem; font-weight: 750; color: __CHARCOAL__; line-height: 1.15;
-  padding-left: 1.4rem; border-left: 2px solid #e7e5e4;
+  font-size: 1.45rem; font-weight: 750; color: __CHARCOAL__; line-height: 44px;
+  padding-left: 1.2rem; border-left: 2px solid #e7e5e4;
 }
 .uc-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .uc-chip {
