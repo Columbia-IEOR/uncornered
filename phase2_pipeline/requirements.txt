@@ -1,0 +1,9 @@
+pandas
+requests
+gspread
+google-auth
+streamlit
+streamlit-folium
+folium
+geopandas
+shapely

@@ -1,0 +1,21 @@
+# Phase 2 pipeline — never commit credentials or local data dumps
+phase2_pipeline/secrets/
+phase2_pipeline/data/cleaned/*.csv
+phase2_pipeline/logs/
+
+# Google service account — never commit
+secrets/
+*.pem
+
+# Local pipeline outputs (legacy paths)
+Data Sourcing/Boston/data/
+*.csv
+!KCPD_Data.csv
+
+# Local / OS
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/

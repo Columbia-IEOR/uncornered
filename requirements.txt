@@ -3,3 +3,8 @@ pandas
 geopandas
 plotly
 folium
+requests
+gspread
+google-auth
+streamlit-folium
+branca
