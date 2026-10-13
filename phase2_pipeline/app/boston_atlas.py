@@ -11,6 +11,7 @@ Run from repo root:
 
 from __future__ import annotations
 
+import base64
 import json
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -28,6 +29,7 @@ PHASE2_ROOT = Path(__file__).resolve().parents[1]
 INCIDENTS_CSV = PHASE2_ROOT / "data" / "cleaned" / "boston_shooting_incidents.csv"
 NEIGH_GEOJSON = PHASE2_ROOT / "data" / "boundaries" / "boston_neighborhoods.geojson"
 TRACT_GEOJSON = PHASE2_ROOT / "data" / "boundaries" / "boston_census_tracts_2020.geojson"
+LOGO_PNG = Path(__file__).resolve().parent / "assets" / "uncornered_logo.png"
 
 CRIME_REPORTS_URL = (
     "https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system"
@@ -95,22 +97,27 @@ div[class*="st-key-card_"] {
 }
 
 .uc-header {
-  background: __CHARCOAL__;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
   border-radius: 16px;
-  padding: 1.05rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 1rem;
-  border-bottom: 4px solid __ORANGE__;
+  box-shadow: 0 1px 2px rgba(28,25,23,0.04);
 }
-.uc-brand { font-size: 0.74rem; letter-spacing: 0.22em; font-weight: 700; color: __ORANGE__; }
-.uc-title { font-size: 1.6rem; font-weight: 750; color: #ffffff; line-height: 1.15; }
+.uc-brandline { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+.uc-logo { height: 68px; width: auto; display: block; }
+.uc-title {
+  font-size: 1.45rem; font-weight: 750; color: __CHARCOAL__; line-height: 1.15;
+  padding-left: 1.4rem; border-left: 2px solid #e7e5e4;
+}
 .uc-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .uc-chip {
-  font-size: 0.78rem; color: #e7e5e4; background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 0.3rem 0.75rem;
+  font-size: 0.78rem; color: #57534e; background: #f5f5f4;
+  border: 1px solid #e7e5e4; border-radius: 999px; padding: 0.3rem 0.75rem;
 }
-.uc-chip b { color: #ffffff; font-weight: 650; }
+.uc-chip b { color: __CHARCOAL__; font-weight: 650; }
 
 .uc-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-bottom: 0.9rem; }
 @media (max-width: 1100px) { .uc-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -505,6 +512,14 @@ def build_map(
 # ---------------------------------------------------------------------------
 # Page
 # ---------------------------------------------------------------------------
+@st.cache_data
+def logo_html() -> str:
+    if not LOGO_PNG.exists():
+        return '<div class="uc-title" style="border:0;padding:0">UNCORNERED</div>'
+    encoded = base64.b64encode(LOGO_PNG.read_bytes()).decode("ascii")
+    return f'<img class="uc-logo" src="data:image/png;base64,{encoded}" alt="Uncornered">'
+
+
 def render_header(incidents: Optional[pd.DataFrame]) -> None:
     chips = ""
     if incidents is not None and len(incidents):
@@ -519,8 +534,8 @@ def render_header(incidents: Optional[pd.DataFrame]) -> None:
     st.markdown(
         f"""
         <div class="uc-header">
-          <div>
-            <div class="uc-brand">UNCORNERED</div>
+          <div class="uc-brandline">
+            {logo_html()}
             <div class="uc-title">Learning Dashboard</div>
           </div>
           <div class="uc-chips">{chips}</div>
